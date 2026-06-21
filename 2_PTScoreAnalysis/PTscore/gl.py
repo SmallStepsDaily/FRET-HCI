@@ -61,18 +61,19 @@ def gaolu_function(df):
         ##################################################
         # 计算不同时间和浓度梯度下的药效矩阵 R
         ##################################################
-        R_matrix = 100* ((alpha * treatment_E + 1) ** (beta * treatment_S) - 1)
+        R_matrix = ((alpha * treatment_E ) ** (beta * treatment_S) - 1)
         result_str += f"{treatment} =============> R_matrix: {R_matrix}\n"
         #################################################
         # 计算权重函数矩阵 B
         #################################################
-        B_matrix = (-np.log10(treatment_concentration + 1e-10)) ** (-treatment_time)
-        B_matrix = B_matrix / (1 + B_matrix)
-        result_str += f"{treatment} =============> B_matrix: {B_matrix}\n"
+        # B_matrix = (-np.log10(treatment_concentration + 1e-10)) ** (-treatment_time)
+        # B_matrix = B_matrix / (1 + B_matrix)
+        # result_str += f"{treatment} =============> B_matrix: {B_matrix}\n"
         ##################################################
         # 显示最后的结果取值
         ##################################################
-        result_str += f"{treatment} 组的药效值 {np.sum(R_matrix * B_matrix)}\n"
+        #result_str += f"{treatment} 组的药效值 {np.sum(R_matrix * B_matrix)}\n"
+        result_str += f"{treatment} 组的药效值 {np.sum(R_matrix)}\n"
 
     return result_str
 
